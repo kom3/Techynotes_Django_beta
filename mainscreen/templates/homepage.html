@@ -1,0 +1,293 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script language="Javascript" type="text/javascript" src="{% static 'js/mainscreen.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mainscreen.css' %}">
+    <title>TechyNotes</title>
+</head>
+<body class="container-fluid main-dom">
+     <!-- nav bar starts here -->
+     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+         <div><b class="wtext">TechyNotes</b></div>
+     <div class="custom-navbar">
+         <div class="align-items">
+             <a href="">Login</a>
+         </div>
+     </div>
+    </nav>
+    <!-- nav bar ends here -->
+<div class="row">
+<div class="col col-md-3 light-border leftpanel">
+    <!-- search bar starts -->
+    <h2 class="f14 search_enhc d-flex flex-justify-between flex-items-center">MANJUNATH KO
+        <a class="btn btn-sm btn-primary text-white" href="#" title="create new note" data-toggle="modal" data-target="#newnote">
+            <svg class="octicon octicon-repo" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path></svg>&nbsp;New
+        </a>
+    </h2>
+    <div class="search_sec">
+        <input class="search" type="text" name="search" id="serach_book" placeholder="Find notes by git username..." onkeyup="mainscreen.searchuserfromremote()">
+    </div>
+    <!-- search bar ends -->
+    <div class="displayuser"></div>
+    
+    <!-- note list area -->
+    <div class="title-align"><b>Available notes:</b></div>
+    <div class="notes-list-box">
+        <ul>
+            <li onclick="mainscreen.load_note()">Django</li>
+            <li>MERN</li>
+            <li>Docker</li>
+            <li>Swarm</li>
+            <li>Mongodb</li>
+            <li>Django</li>
+            <li>MERN</li>
+            <li>Docker</li>
+            <li>Swarm</li>
+            <li>Mongodb</li>
+            <li>Django</li>
+            <li>MERN</li>
+            <li>Docker</li>
+            <li>Swarm</li>
+            <li>Mongodb</li>
+            <li>Django</li>
+            <li>MERN</li>
+            <li>Docker</li>
+            <li>Swarm</li>
+            <li>Mongodb</li>
+        </ul>
+    </div>
+    <!-- note list area ends -->
+</div>
+<div class="col col-md-9 light-border rightpanel" >
+    <div class="rightpane-display-area">
+    <div class="note-header">Setting up docker in ubuntu</div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+        this step teaches how to set up docker <br>
+        in ubuntu.  
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    <div class="step-header">
+        Step: 1
+    </div>
+    <div class="description">
+        this step teaches how to set up docker <br>
+        in ubuntu. 
+    </div>
+    </div>
+</div>
+    </div>
+ <!-- The Modal -->
+ <!-- <div class="modal fade" id="newnote">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-xl">
+      <div class="modal-content">
+      
+        <div class="modal-header">
+          <h4 class="modal-title">Creating a new note:</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button><br>
+        </div>
+        
+        <div class="modal-body">
+            <label for=""><b>Chapter name:</b></label>
+            <input class="chaptername" type="text" placeholder="ex: setting up docker in ubuntu"> 
+            <br><br><br>
+            
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#newnote1">Create</button>
+        </div>
+        
+      </div>
+    </div>
+  </div> -->
+  <!-- modal ends -->
+
+   <!-- The Modal -->
+ <div class="modal fade" id="newnote">
+    <div class="modal-dialog modal-dialog-centered1 modal-dialog-centered  modal-lg modal-xl">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">
+            <label for=""><b>Chapter name:</b></label>
+            <input class="chaptername" type="text" placeholder="ex: setting up docker in ubuntu"> 
+            <div class="toolbar">
+                <div class="tool-item add-btn" onclick="mainscreen.add_step()"><i class="fa fa-plus" aria-hidden="true" style="font-size:34px;color:#ffffff"></i></div>
+            </div>
+        </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button><br>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="notearea"></div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <input class="file_name" style="padding:5px; border:none !important; border-bottom:solid 1px #080808 !important;" type="text" placeholder="filename" onkeyup="mainscreen.enablesavebtn()">
+          <button type="button" class="btn btn-secondary" id="save-btn" onclick="mainscreen.save()" disabled>Save</button>        
+      </div>
+    </div>
+  </div>
+  <!-- modal ends -->
+</body>
+</html>
