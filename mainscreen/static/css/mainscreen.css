@@ -16,22 +16,18 @@ body {
     position: relative;
     width: 100%;
     border-left: none;
-    /* height: 100vh !important; */
-    height: 100%;
+    height: 100vh !important;
     background-color: #ffffff;
-    /* overflow: scroll; */
-    /* padding-bottom: 25px; */
 }
 
 .rightpane-display-area{
-    height: 100vh;
     overflow-y: scroll;
-   padding-bottom: 30px;
+    height: 94%;
 
 }
 
 /* mobile responsiveness */
-@media all and (min-width:960px) and (max-width: 1024px) {
+/* @media all and (min-width:960px) and (max-width: 1024px) {
     .rightpane-display-area{
         height: calc(100vh - 143px);
         overflow-y: scroll;
@@ -98,7 +94,7 @@ body {
         margin-left: -10px;
         padding-bottom: 30px;
     }
-  }
+  } */
 /* mobile responsiveness */
 
 .wtext{
@@ -120,7 +116,7 @@ text-align: right;
 
 }
 .notes-list-box{
-    background-color: #f5f5f0;
+    background-color: #e6e6e6;;
     border: solid 2px #e1e4e8;
     position: relative;
     padding: 15px;
@@ -306,4 +302,11 @@ input:focus{
 .description_ip:focus{
  border: none;
  outline: none;
+}
+.repo_loader{
+    display: none;
+    height: 56px;
+    width: 95px;
+    position: relative;
+    margin-left: 34%;
 }
