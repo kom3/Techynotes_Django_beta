@@ -19,11 +19,15 @@ body {
     height: 100vh !important;
     background-color: #ffffff;
 }
-
 .rightpane-display-area{
     overflow-y: scroll;
     height: 94%;
 
+}
+
+.modal-title{
+    width: 100%;
+    text-align: center;
 }
 
 /* mobile responsiveness */
@@ -240,7 +244,7 @@ ul li:hover{
 }
 .chaptername{
     height: 42px;
-    width: 100%;
+    width: 35%;
     padding: 5px;
     border: none;
     border-bottom: solid 1px #b8bcc1;
@@ -262,7 +266,7 @@ input:focus{
 
 .notearea{
     overflow: scroll;
-    height: 435px;
+    height: 363px;
     width: 100%;
 }
 

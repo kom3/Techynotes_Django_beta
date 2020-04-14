@@ -19,11 +19,9 @@ def home(request):
 
 def loadnote(request):
     filename = request.GET.get('filename')
-    print(filename)
     file_path = os.path.join(os.path.abspath("."),"mainscreen","mynotes",filename)
     with open(file_path,"r") as f:
         file_data = f.readlines()
-        print(file_data)
     return HttpResponse(file_data)
 
 def search_user(request):
@@ -47,9 +45,7 @@ def save_file(request):
     filename = request.GET.get("filename")
     filename = filename+".html"
     file_data = request.GET.get("finalbody")
-    path = os.path.join(os.path.abspath("."),"mainscreen","mynotes",filename)
-    print(filename+"\n\n"+file_data)
-    
+    path = os.path.join(os.path.abspath("."),"mainscreen","mynotes",filename)    
     try:
         with open(path, "w") as f:
             f.write(file_data)
@@ -61,9 +57,8 @@ def save_file(request):
         return HttpResponse("success")
 
 def push_to_git(request):
-    print("pushing code to git...")
-    user = "kom3"
-    password = "mygitmybut@1"
+    user = ""
+    password = ""
     g = Github(user,password)
     repo = g.get_user().get_repo('_techynotes')
     html_list = []
@@ -74,9 +69,6 @@ def push_to_git(request):
         if file.endswith(".html"):
             html_list.append(os.path.join(os.path.abspath("."),"mainscreen","mynotes",file))
             file_names.append(file)
-    print(html_list)
-    print("\n\n")
-    print(file_names)
     commit_message = 'created on '+today.strftime("%d/%m/%Y")
     master_ref = repo.get_git_ref('heads/master')
     master_sha = master_ref.object.sha
@@ -95,7 +87,6 @@ def push_to_git(request):
     master_ref.edit(commit.sha)
 
 def fetch_user_notes(request):
-    print("fetching notes...")
     GHUSER = request.GET.get('username')
     fetch = ""
     destination = os.path.join(os.path.abspath("."),"mainscreen","mynotes")
@@ -106,18 +97,15 @@ def fetch_user_notes(request):
         if (response_code == 200):
             repojson_list = repodata.json()
             num_of_repos = len(repojson_list)
-            # print("num of repos: ",num_of_repos)
             repositories = []
             for i in range(0, num_of_repos):
                 repositories.append(repojson_list[i]["name"])
-            print(repositories)
             if "_techynotes" in repositories:
                 repo_url = "https://github.com/"+GHUSER+"/_techynotes.git"
                 temp_dir = os.path.join(os.getcwd(), "tempdir/_techynotes")
                 if (os.path.exists(temp_dir)):
                     shutil.rmtree(temp_dir)
                 os.makedirs(temp_dir)
-                print("cloning...")
                 branch = "master"
                 Repo.clone_from(repo_url, temp_dir, branch=branch)
                 source = temp_dir
@@ -135,7 +123,6 @@ def fetch_user_notes(request):
     for each in notes:
         if each.endswith(".html"):
             html_notes.append(each.split(".")[0])
-    print(html_notes)
     if(fetch == "success"):
         response = {"status": "success", "repo_list": html_notes}
         return HttpResponse(json.dumps(response), content_type="application/json")

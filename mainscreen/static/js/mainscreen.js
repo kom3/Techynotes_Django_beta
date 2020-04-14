@@ -96,12 +96,9 @@ mainscreen = {
             async: false,
             data: { "username": username }
         }).done(function (data) {
-            console.log("succesfully fetched...")
             if (data["status"] == "success") {
                 $(".repo_loader").hide()
                 repos = data["repo_list"]
-                console.log(data)
-                console.log(repos)
                 var i = 0;
                 list_items = ""
                 final_list = ""
@@ -127,7 +124,6 @@ mainscreen = {
     },
 
     save: function () {
-        console.log("saving file...")
         $(".clone_loader").show()
         $("#save-btn").prop("disabled", true)
         total_steps = $(".stepname").length
@@ -151,7 +147,6 @@ mainscreen = {
             data: { "filename": filename, "finalbody": final_body }
         }).done(function (data) {
             if (data == "success") {
-                console.log("file saved suucessfully")
                 $(".clone_loader").hide()
                 $("#saveclose").trigger("click")
                 mainscreen.synching()
@@ -159,7 +154,6 @@ mainscreen = {
 
             }
             else {
-                console.log("something went wrong!")
                 $(".clone_loader").hide()
                 $("#saveclose").trigger("click")
                 mainscreen.alert("Error", "something went wrong, unable to save notes !", "error")
@@ -208,9 +202,7 @@ mainscreen = {
               clearInterval(timerInterval)
             }
           }).then((result) => {
-            /* Read more about handling dismissals below */
             if (result.dismiss === Swal.DismissReason.timer) {
-              console.log('sync succesfull')
             }
           })
     }
