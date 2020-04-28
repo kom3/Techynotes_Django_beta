@@ -95,6 +95,8 @@ def fetch_user_notes(request):
     GHUSER = request.GET.get('username')
     fetch = ""
     destination = os.path.join(os.path.abspath("."),"mainscreen","mynotes")
+    if not os.path.exists(destination):
+        os.makedirs(destination)
     try:
         repodata = requests.get(
             "https://api.github.com/users/"+GHUSER+"/repos")
