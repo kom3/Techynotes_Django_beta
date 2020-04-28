@@ -6,6 +6,7 @@ $(document).ready(function () {
     //     $(this).css('color','red');
     // });
     mydom.find(".search").val("")
+    mainscreen.fetch_user_notes()
 });
 
 mainscreen = {
@@ -50,8 +51,8 @@ mainscreen = {
         // var mydom = $("#mydom")
         // mydom.find(".remote_repos_list").html("<p></p>");
         // mydom.find(".repo_loader").show()
-        username = mydom.find(".search").val()
-        if (username.trim() != "") {
+        username = mydom.find(".search").val().trim()
+        // if (username.trim() != "") {
             if (mainscreen.timeout != null)
                 clearTimeout(mainscreen.timeout)
             mainscreen.timeout = setTimeout(() => {
@@ -76,20 +77,29 @@ mainscreen = {
                 })
 
             }, 1000);
-        } else {
-            mydom.find(".repo_loader").hide()
-            mydom.find(".displayuser").text("");
-            mydom.find(".fetch-btn").hide();
-            mydom.find(".remote_repos_list").html("<p></p>");
+        // } else {
+        //     mydom.find(".repo_loader").hide()
+        //     mydom.find(".displayuser").text("");
+        //     mydom.find(".fetch-btn").hide();
+        //     mydom.find(".remote_repos_list").html("<p></p>");
 
-        }
+        // }
 
     },
 
     fetch_user_notes: function () {
         $(".notes-list").html("<p></p>");
+        let username = mydom.find(".search").val().trim()
+        if(username.trim() == ""){
+            username = $("#mainuser").text().trim()
+            if (username.trim() == ""){
+                username = ""
+                // list_items = "<div style='color:#f05959; text-align: center;'><b>Please login!</b></div>"
+                // $(".notes-list").html('<ul>' + list_items + '</ul>')
+            }
+        }
+        if(username.trim() != ""){
         $(".repo_loader").show()
-        username = mydom.find(".search").val()
         $.ajax({
             type: 'GET',
             url: 'fetch_user_notes',
@@ -117,10 +127,17 @@ mainscreen = {
                 });
             }
             else if (data["status"] == "service_unavailable") {
+                $(".repo_loader").hide()
                 list_items = "<div style='color:#f05959; text-align: center;'><b>Service temporarily unavailable, please try again later !</b></div>"
                 $(".notes-list").html(list_items)
             }
+            else if(data["status"] == "fail"){
+                $(".repo_loader").hide()
+                list_items = "<div style='color:#f05959; text-align: center;'><b>" + username + " doesn’t have any notes yet !</b></div>"
+                $(".notes-list").html(list_items)
+            }
         })
+    }
     },
 
     save: function () {
@@ -143,7 +160,7 @@ mainscreen = {
         $.ajax({
             type: "GET",
             url: "save_file",
-            // async: false,
+            async: false,
             data: { "filename": filename, "finalbody": final_body }
         }).done(function (data) {
             if (data == "success") {
@@ -196,7 +213,7 @@ mainscreen = {
                     b.textContent = Swal.getTimerLeft()
                   }
                 }
-              }, 200)
+              }, 300)
             },
             onClose: () => {
               clearInterval(timerInterval)
@@ -205,7 +222,75 @@ mainscreen = {
             if (result.dismiss === Swal.DismissReason.timer) {
             }
           })
+    },
+
+    openloginform: function(){
+        $(".loginform").show()
+    },
+
+    closeloginform: function(){
+        $(".loginform").hide()
+    },
+    login(){
+        username = $("#username").val()
+        password = $("#password").val()
+        console.log($(".token").val())
+        if(username.trim() == "" || password.trim() == ""){
+            $("#username").css({"border-color":"#c4c4c4"})
+            $("#password").css({"border-color":"#c4c4c4"})
+            if(username.trim() == ""){
+            $("#username").css({"border-color":"red"})
+            }
+            if(password.trim() == ""){
+                $("#password").css({"border-color":"red"})
+            }
+        }
+        else{
+            $("#username").css({"border-color":"#c4c4c4"})
+            $("#password").css({"border-color":"#c4c4c4"})
+            $.ajax({
+                headers: {
+                    'X-CSRFToken': $(".token").val()
+                },
+                type: "POST",
+                url: "login",
+                async: false,
+                data: { "username": username, "password": password }
+            }).done(function (data) {
+                if (data["status"] == "success") {
+                    console.log("success", data["username"])
+                    mainscreen.closeloginform()
+                    $("#mainuser").text(username)
+                    window.setTimeout(function(){window.location.reload()}, 1000)
+                    
+    
+                }
+                else {
+                    console.log("fail")
+                    
+                }
+        })
+        }
+    },
+    logout: function(){
+        $.ajax({
+            headers: {
+                'X-CSRFToken': $(".token").val()
+            },
+            type: "POST",
+            url: "logout",
+            async: false,
+            data: {}
+        }).done(function (data) {
+            if (data == "success") {
+                window.setTimeout(function(){window.location.reload()}, 1000)
+                console.log("success")
+            }
+            else {
+                console.log("fail")
+                
+            }
+    })
+
     }
-
-
 }

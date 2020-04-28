@@ -1,9 +1,9 @@
 html,
 body {
-    height: 100% !important;
+    height: 100vh !important;
     width: 100% !important;
     overflow-x: hidden;
-    overflow: hidden;
+    overflow-y: hidden;
 }
 .container-fluid {
     padding: 0px !important;
@@ -16,90 +16,32 @@ body {
     position: relative;
     width: 100%;
     border-left: none;
-    height: 100vh !important;
+    height: 100% !important;
     background-color: #ffffff;
 }
 .rightpane-display-area{
+    height: 90%;
     overflow-y: scroll;
-    height: 94%;
+    overflow-x: hidden;
+    border: solid 25px#ffffff00;
+    border-radius: 46px;
+    margin: 3px;
+    padding: 5px;
 
+}
+.rightpane-display-area::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.rightpane-display-area{
+    -ms-overflow-style: none;
 }
 
 .modal-title{
     width: 100%;
     text-align: center;
 }
-
-/* mobile responsiveness */
-/* @media all and (min-width:960px) and (max-width: 1024px) {
-    .rightpane-display-area{
-        height: calc(100vh - 143px);
-        overflow-y: scroll;
-        margin-left: -10px;
-        padding-bottom: 30px;
-    
-    }
-  }
-  
-  @media all and (min-width:801px) and (max-width: 959px) {
-    .rightpane-display-area{
-        height: calc(100vh - 143px);
-        overflow-y: scroll;
-        margin-left: -10px;
-        padding-bottom: 30px;
-    
-    }
-  }
-  
-  @media all and (min-width:769px) and (max-width: 800px) {
-    .rightpane-display-area{
-        height: calc(100vh - 143px);
-        overflow-y: scroll;
-        margin-left: -10px;
-        padding-bottom: 30px;
-    
-    }
-  }
-  
-  @media all and (min-width:569px) and (max-width: 768px) {
-    .rightpane-display-area{
-        height: calc(100vh - 143px);
-        overflow-y: scroll;
-        margin-left: -10px;
-        padding-bottom: 30px;
-    
-    }
-  }
-  
-  @media all and (min-width:481px) and (max-width: 568px) {
-    .rightpane-display-area{
-        height: calc(100vh - 143px);
-        overflow-y: scroll;
-        margin-left: -10px;
-        padding-bottom: 30px;
-    
-    }
-  }
-  
-  @media all and (min-width:321px) and (max-width: 480px) {
-    .rightpane-display-area{
-        height: calc(100vh - 143px);
-        overflow-y: scroll;
-        margin-left: -10px;
-        padding-bottom: 30px;
-    
-    }
-  }
-  
-  @media all and (min-width:0px) and (max-width: 320px) {
-    .rightpane-display-area{
-        height: calc(100vh - 143px);
-        overflow-y: scroll;
-        margin-left: -10px;
-        padding-bottom: 30px;
-    }
-  } */
-/* mobile responsiveness */
 
 .wtext{
     color: #ffffff;
@@ -108,7 +50,7 @@ body {
 text-align: right;
 }
 .leftpanel {
-    height: 100vh !important;
+    height: 100% !important;
     width: 100%;
     background-color: #ffffff;
     border-right: 1px solid #e1e4e8 !important;
@@ -228,7 +170,7 @@ ul li:hover{
 }
 @media screen and  (min-width: 992px){
 .modal-lg, .modal-xl {
-    max-width: 85% !important;
+    max-width:  85% !important;
     /* margin-top: 0px !important; */
 }
 }
@@ -313,4 +255,18 @@ input:focus{
     width: 95px;
     position: relative;
     margin-left: 34%;
+}
+
+.loginform{
+    height: 470px;
+    position: absolute;
+    border: solid 8px;
+    top: 5%;
+    width: 350px;
+    border-radius: 24px;
+    border-color: #e0e5f0;
+    left: 40%;
+    padding: 2%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
 }

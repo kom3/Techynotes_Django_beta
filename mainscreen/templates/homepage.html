@@ -23,15 +23,20 @@
         <div><b class="wtext">TechyNotes</b></div>
         <div class="custom-navbar">
             <div class="align-items">
-                <a href="">Login</a>
+                {% if  username == "" %}
+                <button class="btn-sm btn-info" style="border-radius: 7px; background-color: #007bff; border-color: #007bff;" onclick="mainscreen.openloginform()">Login</button>
+                {% endif %}
+                {% if  username != "" %}
+                <button class="btn-sm btn-info" style="border-radius: 7px; background-color: hsl(0, 100%, 50%); border-color: #007bff;" onclick="mainscreen.logout()">Logout</button>
+                {% endif %}
             </div>
         </div>
     </nav>
     <!-- nav bar ends here -->
-    <div class="row">
-        <div class="col col-md-3 light-border leftpanel">
+    <div class="row" style="height: 100%;">
+        <div class="col-6 col-sm-3 col-xs-3 col-md-3 light-border leftpanel">
             <!-- search bar starts -->
-            <h2 class="f14 search_enhc d-flex flex-justify-between flex-items-center">MANJUNATH KO
+            <h2 class="f14 search_enhc d-flex flex-justify-between flex-items-center"><span id="mainuser">{{username}}</span>
                 <a class="btn btn-sm btn-primary text-white" href="#" title="create new note" data-toggle="modal"
                     data-target="#newnote" onclick="mainscreen.resetmodel()">
                     <svg class="octicon octicon-repo" viewBox="0 0 12 16" version="1.1" width="12" height="16"
@@ -62,14 +67,43 @@
             </div>
             <!-- note list area ends -->
         </div>
-        <div class="col col-md-9 light-border rightpanel">
+        <div class="col-6 col-sm-9 col-xs-9 col-md-9 light-border rightpanel">
             <div class="rightpane-display-area">
 
             </div>
         </div>
     </div>
+    <div>
+        <input type="hidden" class="token" value='{{ csrf_token }}'>
+    </div>
+    <!-- login form -->
+    <div class="loginform" style="display: none;">
+        <!-- <form action="login" method="POST" id="post-form"> -->
+            <!-- {% csrf_token %} -->
+        <div style="    display: block; text-align: right;">
+            <svg onclick="mainscreen.closeloginform()" style="cursor: pointer;" class="bi bi-x" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
+              </svg>
+        </div>
+        <img height="82px" width= "90px" style="margin-top: 5%;margin-left: 30%;" src="{% static "images/login_pg.png" %}">
+        <div style="margin-top: 13%; width: 100%;">
+            <div style="font-size: 10px; color: #4fb7ade8; font-weight: bold;">Login using your git credentials:</div>
+        <div>
+            <input style="width: 100%; border: solid 1px #c4c4c4; padding-left: 8px; border-radius: 5px; height: 32px;" type="text" name="username" id="username" placeholder="username">
+        </div>
+        <br>
+        <div>
+            <input style="width: 100%; border: solid 1px #c4c4c4; padding-left: 8px; border-radius: 5px; height: 32px;" type="password" name="password" id="password" placeholder="passsword">
+        </div>
+        <br>
+        <button class="btn btn-sm btn-success" onclick="mainscreen.login()">Login</button>
+        </div>
+    <!-- </form> -->
+    </div>
+    <!-- ends -->
     <!-- The Modal -->
-    <div class="modal fade" id="newnote">
+    <div class="modal fade" id="newnote" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered1 modal-dialog-centered  modal-lg modal-xl">
             <div class="modal-content">
 
@@ -81,7 +115,7 @@
                         <div class="toolbar">
                             <!-- <div class="tool-item add-btn" onclick="mainscreen.add_step()"><i class="fa fa-plus"
                                     aria-hidden="true" style="font-size:34px;color:#ffffff"></i></div> -->
-                                    <button class="btn btn-primary" onclick="mainscreen.add_step()">Add step</button>
+                            <button class="btn btn-primary" onclick="mainscreen.add_step()">Add step</button>
                         </div>
                     </h4>
                     <button id="saveclose" type="button" class="close" data-dismiss="modal">&times;</button><br>
@@ -94,7 +128,8 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <div class="clone_loader"><img height="30px" width="30px" src="{% static "images/clone.gif" %}"> Saving, hold on a moment please.</div>&nbsp;&nbsp;&nbsp;
+                    <div class="clone_loader"><img height="30px" width="30px" src="{% static "images/clone.gif" %}">
+                        Saving, hold on a moment please.</div>&nbsp;&nbsp;&nbsp;
                     <input class="file_name"
                         style="padding:5px; border:none !important; border-bottom:solid 1px #080808 !important;"
                         type="text" placeholder="filename" onkeyup="mainscreen.enablesavebtn()">

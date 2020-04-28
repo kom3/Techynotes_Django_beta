@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import requests
 import os
 import base64
 import json
 import shutil
+import sys
+from django.views.decorators.csrf import csrf_exempt
 from git import Repo
 from github import Github
 from github import InputGitTreeElement
@@ -14,7 +16,10 @@ from datetime import date
 today = date.today()
 
 def home(request):
-    return render(request, 'homepage.html', content_type=None)
+    username=os.getenv("GITUNAME")
+    if username is None:
+        username = ""
+    return render(request, 'homepage.html', {"username":username})
 
 
 def loadnote(request):
@@ -57,8 +62,8 @@ def save_file(request):
         return HttpResponse("success")
 
 def push_to_git(request):
-    user = ""
-    password = ""
+    user = os.getenv("GITUNAME")
+    password = os.getenv("GITPASS")
     g = Github(user,password)
     repo = g.get_user().get_repo('_techynotes')
     html_list = []
@@ -132,3 +137,23 @@ def fetch_user_notes(request):
     else:
         response = {"status": "fail"}
         return HttpResponse(json.dumps(response), content_type="application/json")
+
+def login(request):
+    try:
+        os.environ['GITUNAME'] = request.POST.get("username")
+        os.environ['GITPASS'] = request.POST.get("password")
+    except:
+        return HttpResponse("fail")
+    else:
+        response={"status":"success","username":os.getenv('GITUNAME')}
+        return JsonResponse(response)
+
+def logout(request):
+    try:
+        os.environ['GITUNAME'] = ""
+        os.environ['GITPASS'] = ""
+    except:
+        return HttpResponse("fail")
+    else:
+        return HttpResponse("success")
+
