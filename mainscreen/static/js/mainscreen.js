@@ -16,7 +16,6 @@ mainscreen = {
         $.ajax({
             type: 'GET',
             url: 'loadnote',
-            async: false,
             data: { "filename": file_name }
 
         }).done(function (data) {
@@ -103,7 +102,6 @@ mainscreen = {
         $.ajax({
             type: 'GET',
             url: 'fetch_user_notes',
-            async: false,
             data: { "username": username }
         }).done(function (data) {
             if (data["status"] == "success") {
@@ -160,7 +158,6 @@ mainscreen = {
         $.ajax({
             type: "GET",
             url: "save_file",
-            async: false,
             data: { "filename": filename, "finalbody": final_body }
         }).done(function (data) {
             if (data == "success") {
@@ -254,7 +251,6 @@ mainscreen = {
                 },
                 type: "POST",
                 url: "login",
-                async: false,
                 data: { "username": username, "password": password }
             }).done(function (data) {
                 if (data["status"] == "success") {
@@ -279,7 +275,6 @@ mainscreen = {
             },
             type: "POST",
             url: "logout",
-            async: false,
             data: {}
         }).done(function (data) {
             if (data == "success") {
