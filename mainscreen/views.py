@@ -99,7 +99,7 @@ def fetch_user_notes(request):
         os.makedirs(destination)
     try:
         repodata = requests.get(
-            "https://api.github.com/users/"+GHUSER+"/repos?1000")
+            "https://api.github.com/users/"+GHUSER+"/repos?per_page=1000")
         response_code = repodata.status_code
         if (response_code == 200):
             repojson_list = repodata.json()
