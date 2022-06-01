@@ -1,0 +1,13 @@
+{
+    "builds": [{
+        "src": "techynotes/wsgi.py",
+        "use": "@ardnt/vercel-python-wsgi",
+        "config": { "maxLambdaSize": "15mb" }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "techynotes/wsgi.py"
+        }
+    ]
+}
